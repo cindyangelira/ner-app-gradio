@@ -1,4 +1,5 @@
 transformers
 spacy
 gradio
-pytorch
+torch
+torchvision
