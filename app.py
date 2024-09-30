@@ -11,7 +11,7 @@ def get_colors():
         "O": "#ffffff",            # White for 'O'
         "PERSON": "#ffadad",      # Light red for 'PERSON'
         "LOCATION": "#ffda83",    # Light yellow for 'LOCATION'
-        "DOB": "#ffadad",         # Light red for 'DOB'
+        "DOB": "#ffa500",         # Light orange for 'DOB'
         "EMAIL": "#85e0e0",       # Light cyan for 'EMAIL'
         "GENDER": "#c3c3e0",      # Light gray for 'GENDER'
         "ACCOUNT": "#b0e0e6",     # Light blue for 'ACCOUNT'
