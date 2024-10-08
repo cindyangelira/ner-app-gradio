@@ -3,7 +3,7 @@ from transformers import pipeline
 from spacy import displacy
 
 # load model pipeline globally 
-ner_pipe = pipeline("token-classification", model="cindyangelira/ner-roberta-large-bahasa-indonesia", aggregation_strategy = "average")
+ner_pipe = pipeline("token-classification", model="cindyangelira/ner-roberta-large-bahasa-indonesia-finetuned", aggregation_strategy = "average")
 
 # define colors for each tag
 def get_colors():
