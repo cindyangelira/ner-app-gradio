@@ -3,7 +3,7 @@ from transformers import pipeline
 from spacy import displacy
 
 # load model pipeline globally 
-ner_pipe = pipeline("token-classification", model="cindyangelira/ner-roberta-large-bahasa-indonesia-finetuned", aggregation_strategy = "average")
+ner_pipe = pipeline("token-classification", model="cindyangelira/ner-roberta-large-bahasa-indonesia-finetuned", aggregation_strategy = "simple")
 
 # define colors for each tag
 def get_colors():
@@ -21,16 +21,33 @@ def get_colors():
 
 def process_prediction(text, pred):
     colors = get_colors()
+    combined_ents = []     # initialize an empty list to store combined entities
 
-    # Correctly refer to 'label' instead of 'entity'
-    # for token in pred:
-    #     token['label'] = token['label'].replace('B-', '').replace('I-', '')
+    current_ent = None # var to track current entitiy
 
-    ents = [{'start': token['start'], 'end': token['end'], 'label': token['label']} for token in pred]
+    for token in pred:
+        token_label = token['entity_group'] #.replace('B-', '').replace('I-', '')
+        token_start = token['start']
+        token_end = token['end']
 
-    doc = {
+        if current_ent is None or current_ent['label'] != token_label:
+            if current_ent:
+                combined_ents.append(current_ent) 
+            current_ent = {
+                'start': token_start,
+                'end': token_end,
+                'label': token_label
+            }
+        else:
+            current_ent['end'] = token_end
+
+    if current_ent: 
+        combined_ents.append(current_ent) # add the last entity after the loop finishes
+
+
+    doc = {  # doc for viz
         "text": text,
-        "ents": ents,
+        "ents": combined_ents,
         "title": None
     }
 
@@ -38,18 +55,16 @@ def process_prediction(text, pred):
     html = displacy.render(doc, style="ent", manual=True, options=options)
     return html
 
-
 def ner_visualization(text):
     predictions = ner_pipe(text)  
     return process_prediction(text, predictions)
 
-
 def build_interface():
     iface = gr.Interface(
-        fn=ner_visualization,                 # Main function for NER visualization
-        inputs=gr.Textbox(label="Input Text"),# Input textbox
-        outputs="html",                       # Output is HTML with rendered NER
-        title="NER Bahasa Indonesia",            # Title of the app
+        fn=ner_visualization,                 
+        inputs=gr.Textbox(label="Input Text"),
+        outputs="html",                      
+        title="NER Bahasa Indonesia",           
         description="Enter text to see named entity recognition results highlighted."
     )
     return iface
