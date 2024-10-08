@@ -9,13 +9,12 @@ ner_pipe = pipeline("token-classification", model="cindyangelira/ner-roberta-lar
 def get_colors():
     return {
         "O": "#ffffff",            # White for 'O'
-        "PERSON": "#ffadad",      # Light red for 'PERSON'
-        "LOCATION": "#ffda83",    # Light yellow for 'LOCATION'
-        "DOB": "#ffa500",         # Light orange for 'DOB'
+        "PER": "#ffadad",      # Light red for 'PERSON'
+        "LOC": "#ffda83",    # Light yellow for 'LOCATION'
+        "DATE_TIME": "#ffa500",         # Light orange for 'DOB'
         "EMAIL": "#85e0e0",       # Light cyan for 'EMAIL'
         "GENDER": "#c3c3e0",      # Light gray for 'GENDER'
-        "ACCOUNT": "#b0e0e6",     # Light blue for 'ACCOUNT'
-        "ID": "#800080",          # Purple for 'ID'
+        "SSN": "#800080",          # Purple for 'ID'
         "PHONE": "#d1ff85" # Light green for 'PHONE NUMBER'
     }
 
