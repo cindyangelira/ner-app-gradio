@@ -22,8 +22,9 @@ def get_colors():
 def process_prediction(text, pred):
     colors = get_colors()
 
-    for token in pred:
-        token['label'] = token['entity'].replace('B-', '').replace('I-', '')
+    # Correctly refer to 'label' instead of 'entity'
+    # for token in pred:
+    #     token['label'] = token['label'].replace('B-', '').replace('I-', '')
 
     ents = [{'start': token['start'], 'end': token['end'], 'label': token['label']} for token in pred]
 
