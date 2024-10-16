@@ -1,5 +1,5 @@
+gradio==5.0.1 
 transformers
 spacy
-gradio
 torch
 torchvision
