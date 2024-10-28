@@ -1,14 +1,13 @@
 import gradio as gr
 from transformers import pipeline
 from spacy import displacy
-# import torch
 
 # load model pipeline globally 
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ner_pipe = pipeline(task = "ner", 
                     model="cindyangelira/ner-roberta-large-bahasa-indonesia-finetuned", 
                     aggregation_strategy = "simple",
-                    device = 0)
+                    device = "cpu")
 
 # define colors for each tag
 def get_colors():
