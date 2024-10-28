@@ -1,18 +1,19 @@
+import spaces
 import gradio as gr
 from transformers import pipeline
 from spacy import displacy
 import torch
 
-# initialize ZeroGPU
-torch.zeros(1).cpu()
-
+@spaces.GPU
+def dummy(): # just a dummy
+    pass
+    
 # load model pipeline globally
 try:
     ner_pipe = pipeline(
         task="ner",
         model="cindyangelira/ner-roberta-large-bahasa-indonesia-finetuned",
         aggregation_strategy="simple",
-        device=-1
     )
 except Exception as e:
     print(f"Error loading model: {e}")
