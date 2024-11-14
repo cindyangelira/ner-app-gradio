@@ -9,4 +9,8 @@ app_file: app.py
 pinned: false
 ---
 
+# Simple Name Entity Recognition (NER) App using Gradio.
+
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+
+Check this space on [Hugging Face](https://huggingface.co/spaces/cindyangelira/ner-bahasa-indonesia).

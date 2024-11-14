@@ -5,7 +5,7 @@ from spacy import displacy
 import torch
 
 @spaces.GPU
-def dummy(): # just a dummy
+def dummy(): # just a dummy to enable the zeroSpace
     pass
     
 # load model pipeline globally
@@ -19,7 +19,7 @@ except Exception as e:
     print(f"Error loading model: {e}")
     raise
 
-# Define colors for each tag
+# define colors for each tag
 ENTITY_COLORS = {
     "O": "#ffffff",        # White for 'O'
     "PER": "#ffadad",      # Light red for 'PERSON'
